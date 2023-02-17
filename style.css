@@ -3,9 +3,9 @@
     background-color: black;
 }
 
-.container {
+#container {
     padding-top: 5rem;
-    color: whitesmoke;
+    color: silver;
     font-family: 'Times New Roman', Times, serif;
     font-size: xx-large;
     font-weight: bolder;
