@@ -1,77 +1,70 @@
 var mins = 00;
-var sec = 00;
-var millsec = 00;
+var secs = 00;
+var millisecs = 00;
 
-var getMin = document.querySelector('#minutes');
-var getSec = document.querySelector('#seconds');
-var getMillSec = document.querySelector('#millisecs');
-var btnStart = document.querySelector('#start');
-var btnStop = document.querySelector('#stop');
-var btnReset = document.querySelector('#reset');
-var Setint;
+var getMilliSecs = document.getElementById("millisecs");
+var getSecs = document.getElementById("seconds");
+var getMins = document.getElementById("mins")
+var btnStart = document.getElementById("start");
+var btnStop = document.getElementById("stop")
+var btnReset = document.getElementById("reset");
+var timing;
 
-function timeid() {
-    millsec++;
-    if (millsec < 10) {
-        getMillSec.innerHTML = "0" + millsec;
+
+btnStart.onclick = function() {
+    clearInterval(timing);
+    timing = setInterval(startTimer, 100)
+}
+
+function startTimer() {
+    millisecs++;
+    if (millisecs < 10) {
+        getMilliSecs.innerHTML = "0" + millisecs;
     }
-    if (millsec >= 10) {
-        getMillSec.innerHTML = millsec;
+    if (millisecs >= 10) {
+        getMilliSecs.innerHTML = millisecs;
 
     }
-    if (millsec > 100) {
-        sec++;
-        millsec = 0;
-        getMillSec.innerHTML = "0" + millsec;
-        if (sec < 10) {
-            getSec.innerHTML = "0" + sec;
+    if (millisecs > 100) {
+        secs++;
+        millisecs = 0;
+        getMilliSecs.innerHTML = "0" + millisecs;
+        if (secs < 10) {
+            getSecs.innerHTML = "0" + secs;
 
         }
-        if (sec >= 10) {
-            getSec.innerHTML = sec;
+        if (secs >= 10) {
+            getSecs.innerHTML = secs;
         }
-        if (sec > 60) {
+
+
+
+        if (secs > 60) {
             mins++;
-            sec = 0;
-            getSec.innerHTML = "0" + sec;
             if (mins < 10) {
-                getMin.innerHTML = "0" + mins;
+                getMins.innerHTML = "0" + mins;
 
             }
             if (mins >= 10) {
-                getMin.innerHTML = mins;
+                getMins.innerHTML = mins;
             }
-
-
+            secs = 0;
+            getSecs.innerHTML = "0" + 0;
         }
+
     }
 }
 
-function timeStart() {
-    Setint = setInterval(timeid, 100);
-
-}
-
-function timeStop() {
-    clearInterval(Setint);
-
-}
-
-function timeReset() {
-    clearInterval(Setint);
+btnReset.onclick = function() {
+    clearInterval(timing);
     mins = "00";
-    sec = "00";
-    millsec = "00";
-    getMillSec.innerHTML = millsec;
-    getMin.innerHTML = mins;
-    getSec.innerHTML = sec;
+    secs = "00";
+    millisecs = "00";
+    getMilliSecs.innerHTML = millisecs;
+    getSecs.innerHTML = secs;
+    getMins.innerHTML = mins;
 }
-if (btnReset) {
-    btnReset.addEventListener("click", timeReset);
-}
-if (btnStop) {
-    btnStop.addEventListener("click", timeStop);
-}
-if (btnStart) {
-    btnStart.addEventListener("click", timeStart);
+
+btnStop.onclick = function() {
+    clearInterval(timing);
 }
